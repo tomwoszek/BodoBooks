@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "236894866178",
+    "project_id": "bodobox-server",
+    "storage_bucket": "bodobox-server.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236894866178:android:1e89355d91ae8e38b7101b",
+        "android_client_info": {
+          "package_name": "com.example.bodobox"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSTQ705fmZOkRcSWgcMYoMl7_HLadrs-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
