@@ -37,114 +37,127 @@ class SettingsView extends StackedView<SettingsViewModel> {
               ),
             )
           : ViewStandard(
-            backgroundColor: theme.colorScheme.onBackground,
-            children: [
-              verticalSpaceMedium,
-              CostumSettingListTile(
-                icon: Icons.change_circle,
-                bottom: false,
-                top: true,
-                label: "Name ändern",
-                onTapCallback: () async {
-                  await viewModel.changeName();
-                },
-                leadingWiget: const SizedBox(),
-              ),
-              const SizedBox(height: 1),
-              CostumSettingListTile(
-                icon: Icons.devices,
-                bottom: false,
-                top: false,
-                label: "Verknüpfte Geräte",
-                onTapCallback: () {
-                  viewModel.showDevices();
-                },
-                leadingWiget: const SizedBox(),
-              ),
-              const SizedBox(height: 1),
-              if (viewModel.user?.masterUser == true) ...[
+              backgroundColor: theme.colorScheme.onBackground,
+              children: [
+                verticalSpaceMedium,
                 CostumSettingListTile(
-                  icon: Icons.lock_person,
+                  icon: Icons.change_circle,
                   bottom: false,
-                  top: false,
-                  label: "Master View",
-                  onTapCallback: () {
-                    viewModel.showMasterView();
+                  top: true,
+                  label: "Name ändern",
+                  onTapCallback: () async {
+                    await viewModel.changeName();
                   },
                   leadingWiget: const SizedBox(),
                 ),
                 const SizedBox(height: 1),
-              ],
-              CostumSettingListTile(
-                icon: Icons.password,
-                bottom: true,
-                top: false,
-                label: "Passwort ändern",
-                onTapCallback: () {
-                  viewModel.changePassword();
-                },
-                leadingWiget: const SizedBox(),
-              ),
-              verticalSpaceMedium,
-              CostumSettingListTile(
-                icon: Icons.house_outlined,
-                bottom: true,
-                top: true,
-                label: "Bücher im Haus teilen",
-                onTapCallback: () {
-                  viewModel.chnageHouseHoldShareMode(true);
-                },
-                leadingWiget: CupertinoSwitch(
-                  value: viewModel.user!.shareMode!,
-                  onChanged: (value) async {
-                    await viewModel.chnageHouseHoldShareMode(value);
+                CostumSettingListTile(
+                  icon: Icons.devices,
+                  bottom: false,
+                  top: false,
+                  label: "Verknüpfte Geräte",
+                  onTapCallback: () {
+                    viewModel.showDevices();
+                  },
+                  leadingWiget: const SizedBox(),
+                ),
+                const SizedBox(height: 1),
+                if (viewModel.user?.masterUser == true) ...[
+                  CostumSettingListTile(
+                    icon: Icons.lock_person,
+                    bottom: false,
+                    top: false,
+                    label: "Master View",
+                    onTapCallback: () {
+                      viewModel.showMasterView();
+                    },
+                    leadingWiget: const SizedBox(),
+                  ),
+                  const SizedBox(height: 1),
+                ],
+                CostumSettingListTile(
+                  icon: Icons.password,
+                  bottom: true,
+                  top: false,
+                  label: "Passwort ändern",
+                  onTapCallback: () {
+                    viewModel.changePassword();
+                  },
+                  leadingWiget: const SizedBox(),
+                ),
+                verticalSpaceMedium,
+                CostumSettingListTile(
+                  icon: Icons.house_outlined,
+                  bottom: true,
+                  top: true,
+                  label: "Bücher im Haus teilen",
+                  onTapCallback: () {
+                    viewModel.chnageHouseHoldShareMode(true);
+                  },
+                  leadingWiget: CupertinoSwitch(
+                    value: viewModel.user!.shareMode!,
+                    onChanged: (value) async {
+                      await viewModel.chnageHouseHoldShareMode(value);
+                    },
+                  ),
+                ),
+                verticalSpaceSmall,
+                Text(
+                  "Wenn du diese Funktion aktivierst, kannst du Bücher mit Freunden und Familie teilen, die sich im gleichen WLAN befinden.",
+                  style: theme.textTheme.bodySmall,
+                  textAlign: TextAlign.center,
+                ),
+                verticalSpaceMedium,
+                CostumSettingListTile(
+                  icon: Icons.description,
+                  bottom: false,
+                  top: true,
+                  label: "Datenschutz",
+                  onTapCallback: () {
+                    viewModel.showDatenschutz();
+                  },
+                  leadingWiget: const SizedBox(),
+                ),
+                const SizedBox(height: 1),
+                CostumSettingListTile(
+                  icon: Icons.description,
+                  bottom: false,
+                  top: false,
+                  label: "AGB's",
+                  onTapCallback: () {
+                    viewModel.showAGB();
+                  },
+                  leadingWiget: const SizedBox(),
+                ),
+                const SizedBox(height: 1),
+                CostumSettingListTile(
+                  icon: Icons.description,
+                  bottom: true,
+                  top: false,
+                  label: "Impressum",
+                  onTapCallback: () {
+                    viewModel.showImpressum();
+                  },
+                  leadingWiget: const SizedBox(),
+                ),
+                verticalSpaceMedium,
+                CustomButton(
+                  invert: false, 
+                  label: "Account löschen",
+                  onPressedCallback: () async{
+                    await viewModel.deleteAccount();
+                  },
+                  ),
+                verticalSpaceMedium,
+                CustomButton(
+                  invert: false, 
+                  label: "Ausloggen",
+                   onPressedCallback: () async{
+                    await viewModel.logOut();
                   },
                 ),
-              ),
-              verticalSpaceSmall,
-              Text(
-                "Wenn du diese Funktion aktivierst, kannst du Bücher mit Freunden und Familie teilen, die sich im gleichen WLAN befinden.",
-                style: theme.textTheme.bodySmall,
-                textAlign: TextAlign.center,
-              ),
-              verticalSpaceMedium,
-              CostumSettingListTile(
-                icon: Icons.description,
-                bottom: false,
-                top: true,
-                label: "Datenschutz",
-                onTapCallback: () {
-                  viewModel.showDatenschutz();
-                },
-                leadingWiget: const SizedBox(),
-              ),
-              const SizedBox(height: 1),
-              CostumSettingListTile(
-                icon: Icons.description,
-                bottom: false,
-                top: false,
-                label: "AGB's",
-                onTapCallback: () {
-                  viewModel.showAGB();
-                },
-                leadingWiget: const SizedBox(),
-              ),
-              const SizedBox(height: 1),
-              CostumSettingListTile(
-                icon: Icons.description,
-                bottom: true,
-                top: false,
-                label: "Impressum",
-                onTapCallback: () {
-                  viewModel.showImpressum();
-                },
-                leadingWiget: const SizedBox(),
-              ),
-              verticalSpaceMedium,
-              CustomButton(invert: false, label: "Account löschen"),
-              CustomButton(invert: false, label: "Ausloggen"),
-            ],
-          ),
+              ],
+            ),
     );
   }
 

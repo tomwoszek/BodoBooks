@@ -6,10 +6,14 @@ import 'package:bodobox/utils/models/book_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class BookDetailViewModel extends BaseViewModel {
+class BookDetailViewModel extends FutureViewModel {
+  BookDetailViewModel({required this.bookId});
+  final String bookId;
   final NavigationService _navigationService = locator<NavigationService>();
   final DialogService _dialogService = locator<DialogService>();
   final BookService _bookService = locator<BookService>();
+  bool _hasBundle = false;
+  bool get hasBundle => _hasBundle;
 
   Future<void> readPage(String bookId) async {
     await giveInformation();
@@ -21,9 +25,15 @@ class BookDetailViewModel extends BaseViewModel {
     await _navigationService.navigateToListenView(bookLink: bookId, book: book);
   }
 
-  Future<bool> hasBundle(String bookId) async{
-    return await _bookService.hasBundle(bookId);
+  Future<void> checkBundle() async {
+    _hasBundle = await _bookService.hasBundle(bookId);
+  }
 
+  Future<void> buyBundle() async {
+    if (await _bookService.buyBundle(bookId)) {
+      await checkBundle();
+      rebuildUi();
+    }
   }
 
   Future<void> giveInformation() async {
@@ -32,5 +42,10 @@ class BookDetailViewModel extends BaseViewModel {
         title: "Achtung",
         description:
             "Lassen Sie ihr Kind bitte nicht unbeaufsichtigt mit diesem Gerät alleine, aktivieren sie wenn doch den Geführten Zugriff.");
+  }
+
+  @override
+  Future futureToRun() async {
+    await checkBundle();
   }
 }

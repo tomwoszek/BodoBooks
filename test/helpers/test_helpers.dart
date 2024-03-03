@@ -10,6 +10,7 @@ import 'package:bodobox/services/house_hold_service.dart';
 import 'package:bodobox/services/theme_service.dart';
 import 'package:bodobox/services/master_service.dart';
 import 'package:bodobox/services/book_service.dart';
+import 'package:bodobox/services/crypt_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -26,6 +27,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<ThemeService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<MasterService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<BookService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<CryptService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -40,6 +42,7 @@ void registerServices() {
   getAndRegisterThemeService();
   getAndRegisterMasterService();
   getAndRegisterBookService();
+  getAndRegisterCryptService();
 // @stacked-mock-register
 }
 
@@ -146,6 +149,13 @@ MockBookService getAndRegisterBookService() {
   _removeRegistrationIfExists<BookService>();
   final service = MockBookService();
   locator.registerSingleton<BookService>(service);
+  return service;
+}
+
+MockCryptService getAndRegisterCryptService() {
+  _removeRegistrationIfExists<CryptService>();
+  final service = MockCryptService();
+  locator.registerSingleton<CryptService>(service);
   return service;
 }
 // @stacked-mock-create

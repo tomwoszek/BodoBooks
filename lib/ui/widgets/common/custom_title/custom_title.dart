@@ -31,13 +31,21 @@ class CustomTitle extends StackedView<CustomTitleModel> {
           ),
           horizontalSpaceMedium,
           SizedBox(
+            width: _mediaData.width * 0.6,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: _theme.textTheme.titleMedium),
                 SizedBox(
-                  width: _mediaData.width * 0.5,
+                  child: Text(
+                    title, 
+                    style: _theme.textTheme.titleMedium,
+                    overflow: TextOverflow.clip,
+                  )
+                 ),
+                SizedBox(
+                  width: _mediaData.width * 0.6,
+                  height: 100,
                   child: Text(
                     body,
                     style: _theme.textTheme.bodySmall,

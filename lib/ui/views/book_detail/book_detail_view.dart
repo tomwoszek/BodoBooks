@@ -52,14 +52,23 @@ class BookDetailView extends StackedView<BookDetailViewModel> {
             onPressedCallback: () async {},
           ),
           verticalSpaceSmall,
-          CustomButton(
-            height: 55,
-            invert: true,
-            label: "Hörbuch anhören ",
-            onPressedCallback: () async {
-              await viewModel.listenToAudios(bookId, book);
-            },
-          ),
+          viewModel.hasBundle
+              ? CustomButton(
+                  height: 55,
+                  invert: true,
+                  label: "Hörbuch anhören ",
+                  onPressedCallback: () async {
+                    await viewModel.listenToAudios(bookId, book);
+                  },
+                )
+              : CustomButton(
+                  height: 55,
+                  invert: true,
+                  label: "Bundel kaufen ",
+                  onPressedCallback: () async {
+                    await viewModel.buyBundle();
+                  },
+                ),
           verticalSpaceSmall,
           CustomButton(
             height: 55,
@@ -76,5 +85,5 @@ class BookDetailView extends StackedView<BookDetailViewModel> {
   BookDetailViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      BookDetailViewModel();
+      BookDetailViewModel(bookId: bookId);
 }

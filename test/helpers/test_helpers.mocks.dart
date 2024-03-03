@@ -7,6 +7,7 @@ import 'dart:async' as _i6;
 import 'dart:ui' as _i7;
 
 import 'package:bodobox/services/book_service.dart' as _i22;
+import 'package:bodobox/services/crypt_service.dart' as _i23;
 import 'package:bodobox/services/device_service.dart' as _i10;
 import 'package:bodobox/services/house_hold_service.dart' as _i19;
 import 'package:bodobox/services/master_service.dart' as _i21;
@@ -1486,6 +1487,59 @@ class MockRequestService extends _i1.Mock implements _i13.RequestService {
         returnValueForMissingStub:
             _i6.Stream<_i17.QuerySnapshot<Map<String, dynamic>>>.empty(),
       ) as _i6.Stream<_i17.QuerySnapshot<Map<String, dynamic>>>);
+
+  @override
+  _i6.Future<bool> hasBundle(
+    String? userId,
+    String? bookId,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #hasBundle,
+          [
+            userId,
+            bookId,
+          ],
+        ),
+        returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
+
+  @override
+  _i6.Future<_i2.ServerCallBack> buyBundle(
+    String? userId,
+    String? bookId,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #buyBundle,
+          [
+            userId,
+            bookId,
+          ],
+        ),
+        returnValue: _i6.Future<_i2.ServerCallBack>.value(_FakeServerCallBack_0(
+          this,
+          Invocation.method(
+            #buyBundle,
+            [
+              userId,
+              bookId,
+            ],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i2.ServerCallBack>.value(_FakeServerCallBack_0(
+          this,
+          Invocation.method(
+            #buyBundle,
+            [
+              userId,
+              bookId,
+            ],
+          ),
+        )),
+      ) as _i6.Future<_i2.ServerCallBack>);
 }
 
 /// A class which mocks [PrefsService].
@@ -1778,4 +1832,29 @@ class MockBookService extends _i1.Mock implements _i22.BookService {
         returnValueForMissingStub:
             _i6.Stream<_i17.QuerySnapshot<Map<String, dynamic>>>.empty(),
       ) as _i6.Stream<_i17.QuerySnapshot<Map<String, dynamic>>>);
+
+  @override
+  _i6.Future<bool> hasBundle(String? bookId) => (super.noSuchMethod(
+        Invocation.method(
+          #hasBundle,
+          [bookId],
+        ),
+        returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
+
+  @override
+  _i6.Future<bool> buyBundle(String? bookId) => (super.noSuchMethod(
+        Invocation.method(
+          #buyBundle,
+          [bookId],
+        ),
+        returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
 }
+
+/// A class which mocks [CryptService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCryptService extends _i1.Mock implements _i23.CryptService {}

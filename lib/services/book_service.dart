@@ -15,13 +15,21 @@ class BookService {
     return status.status;
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> getAudios(String bookId,)  {
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAudios(
+    String bookId,
+  ) {
     final audios = _requestService.getAudios(bookId);
     return audios;
   }
 
-  Future<bool> hasBundle( String bookId) async {
+  Future<bool> hasBundle(String bookId) async {
     final userId = _prefsService.getUserId();
     return await _requestService.hasBundle(userId!, bookId);
+  }
+
+  Future<bool> buyBundle(String bookId) async {
+    final userId = _prefsService.getUserId();
+    final serverResponse = await _requestService.buyBundle(userId!, bookId);
+    return serverResponse.status;
   }
 }

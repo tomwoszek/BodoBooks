@@ -29,6 +29,7 @@ import 'package:bodobox/services/book_service.dart';
 import 'package:bodobox/ui/views/book_detail/book_detail_view.dart';
 import 'package:bodobox/ui/views/read/read_view.dart';
 import 'package:bodobox/ui/views/listen/listen_view.dart';
+import 'package:bodobox/services/crypt_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -63,6 +64,7 @@ import 'package:bodobox/ui/views/listen/listen_view.dart';
     LazySingleton(classType: ThemeService),
     LazySingleton(classType: MasterService),
     LazySingleton(classType: BookService),
+    LazySingleton(classType: CryptService),
 // @stacked-service
   ],
   bottomsheets: [

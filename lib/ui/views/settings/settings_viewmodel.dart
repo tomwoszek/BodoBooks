@@ -82,4 +82,13 @@ class SettingsViewModel extends FutureViewModel {
   void back() async {
     await _navigationService.clearStackAndShow(Routes.homeView);
   }
+ 
+ Future<void> deleteAccount() async {
+  await _userService.deleteUser();
+ }
+
+  Future<void> logOut() async {
+  await _userService.logOut();
+ }
+
 }

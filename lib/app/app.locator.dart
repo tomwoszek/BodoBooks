@@ -12,6 +12,7 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/book_service.dart';
+import '../services/crypt_service.dart';
 import '../services/device_service.dart';
 import '../services/house_hold_service.dart';
 import '../services/master_service.dart';
@@ -42,4 +43,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => ThemeService());
   locator.registerLazySingleton(() => MasterService());
   locator.registerLazySingleton(() => BookService());
+  locator.registerLazySingleton(() => CryptService());
 }

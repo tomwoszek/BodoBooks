@@ -60,6 +60,10 @@ class HomeViewModel extends FutureViewModel {
     rebuildUi();
   }
 
+  Future<void> logOut() async{
+   await  _userService.logOut();
+  }
+
   Future<void> getUserData() async {
     _user = await _userService.getUserData();
   }

@@ -27,6 +27,7 @@ dependencies:
   network_info_plus: ^4.1.0+1
   permission_handler: ^11.3.0
   photo_view: ^0.14.0
+  pointycastle: ^3.7.4
   shared_preferences: ^2.2.2
   stacked: ^3.4.0
   stacked_services: ^1.1.0

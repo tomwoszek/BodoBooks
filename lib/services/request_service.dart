@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:bodobox/app/app.dialogs.dart';
 import 'package:bodobox/app/app.locator.dart';
 import 'package:bodobox/app/app.router.dart';
+import 'package:bodobox/services/crypt_service.dart';
 import 'package:bodobox/services/device_service.dart';
 import 'package:bodobox/services/prefs_service.dart';
 import 'package:bodobox/utils/enums.dart';
@@ -27,6 +28,7 @@ class RequestService {
   static final DialogService _dialogService = locator<DialogService>();
   static final DeviceService _deviceService = locator<DeviceService>();
   static final PrefsService _prefsService = locator<PrefsService>();
+  static final CryptService _cryptService = locator<CryptService>();
   static final NavigationService _navigationService =
       locator<NavigationService>();
 
@@ -148,6 +150,7 @@ class RequestService {
 
   Future<BodoboxUser?> getUserData(String userId) async {
     try {
+      print("hello");
       final userID = _prefsService.getUserId();
       if (userID == null) return null;
       final userRawData =
@@ -256,7 +259,32 @@ class RequestService {
     await _prefsService.deletUserId();
     await _navigationService.clearStackAndShow(Routes.titleView);
   }
-
+   
+  Future<ServerCallBack> deleteUser(String userId) async {
+     try {
+      await _firebaseAuth.currentUser?.delete();
+      await _firebaseFirestore.collection("user").doc(userId).delete();
+      return ServerCallBack(status: true, string: "");
+    } on FirebaseAuthException catch (error) {
+      String errorCode = error.code;
+      switch (error.code) {
+        case "too-many-requests":
+          errorCode = "Ein Fehler ist aufgetretten.";
+          break;
+        case "operation-not-allowed":
+          errorCode = "Ein Fehler ist aufgetretten.";
+          break;
+      }
+      await _dialogService.showCustomDialog(
+          variant: DialogType.error, description: errorCode);
+      return ServerCallBack(status: false, string: "");
+    } on FirebaseException catch (error) {
+      await _dialogService.showCustomDialog(
+          variant: DialogType.error,
+          description: "Ein fehler ist aufgetretten");
+      return ServerCallBack(status: false, string: "$error");
+    }
+  }
   // Household Service
 
   Future<String?> getHousHoldIpAdress() async {
@@ -633,13 +661,20 @@ class RequestService {
       return ServerCallBack(status: false, string: "");
     }
   }
-  
-  Stream<QuerySnapshot<Map<String, dynamic>>>  getAudios(String bookId,)  {
-    final snapshots = _firebaseFirestore.collection("books").doc(bookId).collection("music").snapshots();
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAudios(
+    String bookId,
+  ) {
+    final snapshots = _firebaseFirestore
+        .collection("books")
+        .doc(bookId)
+        .collection("music")
+        .snapshots();
     return snapshots;
   }
 
-  Future<bool> hasBundle(String userId, String bookId) async { try {
+  Future<bool> hasBundle(String userId, String bookId) async {
+    try {
       final protocolRawData = await _firebaseFirestore
           .collection("user")
           .doc(userId)
@@ -647,7 +682,7 @@ class RequestService {
           .doc(bookId)
           .get();
       final data = protocolRawData.data();
-      if(data ==null) return false;
+      if (data == null) return false;
       return data["bundle"];
     } on FirebaseException catch (e) {
       _dialogService.showCustomDialog(
@@ -656,8 +691,28 @@ class RequestService {
       );
       return false;
     }
-
   }
 
-
+  Future<ServerCallBack> buyBundle(
+    String userId,
+    String bookId,
+  ) async {
+    try {
+      await _firebaseFirestore
+          .collection("user")
+          .doc(userId)
+          .collection("buyProtocol")
+          .doc(bookId)
+          .update({
+        "bundle": true,
+      });
+      return ServerCallBack(status: true, string: "");
+    } on FirebaseException catch (e) {
+      _dialogService.showCustomDialog(
+        variant: DialogType.error,
+        description: e.code,
+      );
+      return ServerCallBack(status: false, string: "");
+    }
+  }
 }

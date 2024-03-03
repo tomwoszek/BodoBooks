@@ -43,4 +43,16 @@ class UserServieService {
     final status = await _requestService.updatePassword(user);
     return status.status;
   }
+
+  Future<void> logOut() async {
+     await _requestService.logOut();
+  }
+
+  Future<void> deleteUser() async {
+    final userId = _prefsService.getUserId();
+    final serverResponse = await _requestService.deleteUser(userId!);
+    if(serverResponse.status) {
+      await _requestService.logOut();
+    }
+  } 
 }
