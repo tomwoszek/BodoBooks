@@ -20,7 +20,6 @@ class SettingsView extends StackedView<SettingsViewModel> {
     Widget? child,
   ) {
     final theme = Theme.of(context);
-    final mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
       appBar: appBarWithLeadingText(
           backgroundColor: theme.colorScheme.onBackground,

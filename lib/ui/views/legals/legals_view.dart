@@ -27,7 +27,7 @@ class LegalsView extends StackedView<LegalsViewModel> {
             title: ''),
         backgroundColor: Theme.of(context).colorScheme.background,
         body: Padding(
-          padding: pagePaddingwithAppBar(mediaQuery.width),
+          padding: pagePaddingwithAppBar(mediaQuery.width, mediaQuery.height),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

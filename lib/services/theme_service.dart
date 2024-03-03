@@ -141,11 +141,15 @@ AppBar dummyAppBar({
       leading: null,
     );
 
-EdgeInsets pagePaddingwithAppBar(double mediaWidth) =>  EdgeInsets.only(
+EdgeInsets pagePaddingwithAppBar(double mediaWidth, double mediaHeight) =>  EdgeInsets.only(
       top: 0,
       bottom: 20,
-      left: mediaWidth * 0.2,
-      right: mediaWidth * 0.2,
+      left: mediaWidth > mediaHeight
+      ? mediaWidth * 0.2
+      : mediaWidth * 0.05,
+      right: mediaWidth > mediaHeight
+      ? mediaWidth * 0.2
+      : mediaWidth * 0.05
     );
 
 EdgeInsets normalPadding(double mediaWidth) =>  EdgeInsets.only(

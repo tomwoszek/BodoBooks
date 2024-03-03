@@ -30,32 +30,24 @@ class HomeView extends StackedView<HomeViewModel> {
             )
           : ViewStandard(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: 0,
-                      bottom: 20,
-                      left: 20,
-                      right: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Hallo ${viewModel.user?.name},",
-                          style: _theme.textTheme.bodyLarge!
-                              .copyWith(fontSize: 27),
-                          textAlign: TextAlign.start,
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            viewModel.settings();
-                          },
-                          icon: const Icon(Icons.person),
-                          color: _theme.primaryColor,
-                          iconSize: 35,
-                        ),
-                      ],
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Hallo ${viewModel.user?.name},",
+                        style: _theme.textTheme.bodyLarge!
+                            .copyWith(fontSize: 27),
+                        textAlign: TextAlign.start,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          viewModel.settings();
+                        },
+                        icon: const Icon(Icons.person),
+                        color: _theme.primaryColor,
+                        iconSize: 35,
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: mediaQuery.size.height *0.75,

@@ -20,7 +20,7 @@ class ViewStandard extends StackedView<ViewStandardModel> {
     final theme = Theme.of(context);
     final mediaQuery = MediaQuery.of(context).size;
     return Container(
-        padding: padding ?? pagePaddingwithAppBar(mediaQuery.width),
+        padding: padding ?? pagePaddingwithAppBar(mediaQuery.width, mediaQuery.height),
         color: backgroundColor ?? theme.colorScheme.background,
         child: SingleChildScrollView(
           physics: mediaQuery.height > 800

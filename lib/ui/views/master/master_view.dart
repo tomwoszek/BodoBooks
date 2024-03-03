@@ -34,7 +34,7 @@ class MasterView extends StackedView<MasterViewModel> {
             )
           : Container(
               child: Padding(
-                padding: pagePaddingwithAppBar(mediaQuery.width),
+                padding: pagePaddingwithAppBar(mediaQuery.width, mediaQuery.height),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,

@@ -23,7 +23,7 @@ class UploadPageView extends StackedView<UploadPageViewModel> {
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: Container(
-            padding: pagePaddingwithAppBar(mediaQuery.width),
+            padding: pagePaddingwithAppBar(mediaQuery.width, mediaQuery.height),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,

@@ -25,7 +25,7 @@ class CustomButton extends StackedView<CustomButtonModel> {
   ) {
     final _theme = Theme.of(context);
     return SizedBox(
-      height: height,
+      height: 60,
       child: ElevatedButton(
         onPressed: onPressedCallback,
         style: ElevatedButton.styleFrom(

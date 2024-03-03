@@ -2,7 +2,6 @@ import 'package:bodobox/app/app.dialogs.dart';
 import 'package:bodobox/app/app.locator.dart';
 import 'package:bodobox/app/app.router.dart';
 import 'package:bodobox/services/book_service.dart';
-import 'package:bodobox/services/request_service.dart';
 import 'package:bodobox/utils/models/book_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';

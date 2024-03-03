@@ -44,7 +44,7 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
             : AlwaysScrollableScrollPhysics(),
         children: [
           Container(
-              padding: pagePaddingwithAppBar(_mediaQuery.width),
+              padding: pagePaddingwithAppBar(_mediaQuery.width, _mediaQuery.height),
               child: Form(
                 key: viewModel.formKey,
                 child: Column(

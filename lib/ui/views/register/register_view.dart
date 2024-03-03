@@ -48,7 +48,7 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
             : AlwaysScrollableScrollPhysics(),
         children: [
           Container(
-              padding: pagePaddingwithAppBar(_mediaQuery.width),
+              padding: pagePaddingwithAppBar(_mediaQuery.width, _mediaQuery.height),
               child: Form(
                 key: viewModel.formKey,
                 child: Column(

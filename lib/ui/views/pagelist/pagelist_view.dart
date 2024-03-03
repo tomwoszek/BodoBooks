@@ -25,7 +25,7 @@ class PagelistView extends StackedView<PagelistViewModel> {
       ),
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       body: Container(
-          padding: pagePaddingwithAppBar(mediaQuery.width),
+          padding: pagePaddingwithAppBar(mediaQuery.width, mediaQuery.height),
           child: Column(
             children: [
               Text("Seitenstruktur", style: theme.textTheme.titleLarge),

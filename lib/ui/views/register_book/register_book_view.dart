@@ -37,7 +37,7 @@ class RegisterBookView extends StackedView<RegisterBookViewModel>
       body: Container(
         color: theme.colorScheme.background,
         child: Padding(
-          padding: pagePaddingwithAppBar(mediaQuery.width),
+          padding: pagePaddingwithAppBar(mediaQuery.width, mediaQuery.height),
           child: Form(
             key: viewModel.formKey,
             child: Column(

@@ -31,7 +31,7 @@ class BuyView extends StackedView<BuyViewModel> {
       body: Container(
         color: theme.colorScheme.background,
         child: Padding(
-          padding: pagePaddingwithAppBar(mediaQuery.width),
+          padding: pagePaddingwithAppBar(mediaQuery.width, mediaQuery.height),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
